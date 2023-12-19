@@ -1,0 +1,61 @@
+Python virtual enviroments:
+
+1. Lets say that I have a project 1 that has or needs fastapi version 1.2.1 . and then lets say we have project 2 that requires us to run
+fastapi version 2.4.3 to try out the newer features. So for different projects there is compatabilty issues if we updated the version.
+To avoid conflicts in the versions we have the virtual enviroments.
+2. Python virtual enviroments is an isolated enviroments with its own set of packages that is isolated to the project you create.
+3. To create virtual enviroments go to the terminal and execute this line,  py -3 -m venv venv. We can create multiple venv under the same name
+"venv" because this enviroment is isolated to this project folder.
+4. After view-> commandPallete -> enter interpreter -> venv\Scripts\python.exe. We are use the pythom exe from the virtual enviroment.
+5. Make sure that our terminal is also using the virtual enviroment , to do that we go to the terminal and type this venv\Scripts\activate.bat
+6. path operation - app = FASTAPI() - @app.get("/"):
+                                      def root():
+                                        return {"messages":"Hello World"}
+
+7. HTTP get vs post requests
+8. why we need schema  ?
+9. CRUD operations-> update= put -> basically have to give all the information, patch -> basically updates one single thing u want to update.
+10. What does the pydantic BaseModel do and why is used. Also what does the typing Optional do , what uniqueness does add?
+
+11. http://127.0.0.1:8000/doc or http://127.0.0.1:8000/redoc can also be used instead of postman.
+12. Database is an organized collection of data, that can be easily accessed and managed.
+13. We do not directly interact or work with database, instead we have database management system, that performs some operations and get the response.
+14. SQL - Structured query language , is a language used to communicate with the database managemnet system , that will perform operations 
+on the database and we get the response.
+15. Python works with packages, so when creating a package we create __init__.py and then proceed to move the main.py file to that app folder.
+16. Once we moved that file we need to do the below, uvicorn app.main:app --reload. since we changed the location of the main.py
+17. What is a table in database? It reporesents an event or a subject in an application.
+18. All these tables are going to form relationships with each other and hence it is named as relational database.
+19. So what is a primary key? A primary key is a column or group of columns that uniquely identifies each row that each entry of the table.
+Each table can have one and only one primary keys.
+20. Adding unique constraints that can be applied to any column to make sure that every record has unique value for that column.
+21. When we are working with the database with python application or any other application we use the mysql or postgre data base to interact with
+the database by sending the sql command.
+22. One of the popular ways to interact with the database is the ORM ,Object relational Mapper, It is a layer of abstraction that 
+sits between the database and our fastapi application. We never talk directly to the database anymore, we talk to the ORM and then 
+the ORM will talk to our database. 
+23. What is the benifit of ORM? instead of using the sql commands we can use raw python code, calling various functions and methods that 
+alternly translate into SQL themselves.
+24. So right now we got our fast api server it is going to talk to the database with sql using the default mysql driver.
+25. With ORM , we dont need to use SQL commands, instead fast api will actually use the python code to send specific commands to ORM,
+and then the ORM will take the python code , convert into regular sql and the use the mysql driver , will talk to the database.and
+send that result back to us.
+26. It doesnt know how to communicate with database unless it has the driver with it.
+
+
+Errors I came across:
+
+1. I couldn't connect to the mysql database bcz the enviroment i was using that is venv python 3.6.3 , i couldnt install the wheels for mysqlclient.
+2. to resolve this I have created a new enviroment new_env with python 3.8.3, and installed all the dependecies, like pymysql, pydantic,fastapi, sqlalchemy, uvicorn.
+3. Next problem was that the password that I used had "@" with it so had encode it and use it in the sqlalchemyurl, that was the reason why i couldnt connect to
+the database. after doing so there was connection established.
+4. Next problem was that the posts table using sqlalchemy the string was defined but its length wasnt so i had to alter to string(255) then everything was alright.
+5. mysql username = "root", localhost and port also must be mentioned.
+
+
+1. In the published table schema, the default = True, instead change it to server_defualt="True" add nullable =False 
+2. sqlalchemy if you are to make some modifications to the shema of the table or column, then it doesnt modify it instead use alembic for it.
+
+
+
+Routers: to organize our path and code to make it claener
